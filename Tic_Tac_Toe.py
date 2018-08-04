@@ -1,7 +1,6 @@
-#TIC TAC TOE version 1.0
+#TIC TAC TOE version 1.1
 #author@ Rohan Prasad
-#thing to work on : use random and implement GUI
-
+#thing to work on : Implement GUI and allow player to play first 
 def main():
      board={'1': ' ', '2': ' ', '3': ' ', '4': ' ', '5': ' ', '6': ' ', '7': ' ', '8': ' ', '9': ' '}
      turn='X'
@@ -61,10 +60,12 @@ def printBoard(board):
       print('-+-+-')
 
 def chekDraw(board):
-    for i in range(9):
+    if chekWinner(board):
+      for i in range(9):
         if board[str(i+1)]==' ':
             return False
-    return True 
+      return True 
+    return False
 
 def chekWinner(board):
     if board['1']=='X' and board['2']=='X' and board['3']=='X' or board['1']=='O' and board['2']=='O' and board['3']=='O':
@@ -94,14 +95,14 @@ def chekWinner(board):
 def AI(board,turn,whoTurn,startTurn):
     play=0
     if startTurn=='comp':
-          if whoTurn==0: play=random(5)
+          if whoTurn==0: play=randm(5)
           elif whoTurn==2:
                if board['5']==turn : play=giveDiagonal(findDiagonal(board,oppTurn(turn)))
                elif board['1']==turn or board['3']==turn or board['7']==turn or board['9']==turn:
                    val=findDiagonal(board,oppTurn(turn))
                    play=giveStraight(board,oppTurn(turn),val)
                else : play=5
-          elif whoTurn==4:
+          elif whoTurn==4 :
                count=countDiagonal(board,oppTurn(turn))
                result=[chekDiagonal(board,turn),chekStraight(board,turn,'row'),chekStraight(board,turn,'col')]
                for i in range(3):
@@ -138,11 +139,12 @@ def oppTurn(turn):
         return 'O'
     return 'X'
 
-#need to make the choice random
-def random(num):
+
+import random
+def randm(num):
     if num==5:
         numb=[1,3,7,9]
-        return 3
+        return random.choice(numb)
 
 def findDiagonal(board,turn):
     for i in range(9):
@@ -222,9 +224,9 @@ def countDiagonal(board,turn):
           
 def giveTwoStaight(board,turn):
      val=findDiagonal(board,turn)
-     valOne=giveStraight(board,turn,val+1)
+     valOne=giveStraight(board,turn,val)
      valTwo=giveStraight(board,turn,val+6)
      return max(valOne,valTwo)
  
 main()
-print("testing push")
+
