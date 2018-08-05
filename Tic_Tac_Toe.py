@@ -1,6 +1,6 @@
-#TIC TAC TOE version 1.1
+#TIC TAC TOE version 1.2
 #author@ Rohan Prasad
-#thing to work on : Implement GUI and allow player to play first 
+#thing to work on : Implementation of gui and allowing the player to play first 
 def main():
      board={'1': ' ', '2': ' ', '3': ' ', '4': ' ', '5': ' ', '6': ' ', '7': ' ', '8': ' ', '9': ' '}
      turn='X'
@@ -25,6 +25,7 @@ def tic (board,turn,toss):
                 valt=str(i+1)
                 if board[valt]!=' ':
                     count=count+1
+
             val=AI(board,turn,count,'comp')
             board[str(val)]='O'
             printBoard(board)
@@ -151,6 +152,13 @@ def findDiagonal(board,turn):
         if board[str(i+1)]==turn:
            return i+1
 
+def findSecondDiagonal(board,turn,valSkip):
+     for i in range(9):
+        if board[str(i+1)]==turn and i+1!=valSkip:
+           return i+1
+
+
+
 def giveDiagonal(num):
     if num==1:
         return 9
@@ -200,14 +208,14 @@ def giveStraight(board,turn,val):
     elif val==7:
        if board[str(val+1)]==' ' and board[str(val+2)]==' ':
            return 9
-       if board[str(val-3)]==' ' and board[str(val-3)]==' ':
+       if board[str(val-3)]==' ' and board[str(val-6)]==' ':
            return 1
     elif val==3:
         if board[str(val-1)]==' ' and board[str(val-2)]==' ':
            return 1
         if board[str(val+3)]==' ' and board[str(val+6)]==' ':
            return 9
-    else:
+    elif val==1:
         if board[str(val+1)]==' ' and board[str(val+2)]==' ':
            return 3
         if board[str(val+3)]==' ' and board[str(val+6)]==' ':
@@ -225,8 +233,10 @@ def countDiagonal(board,turn):
 def giveTwoStaight(board,turn):
      val=findDiagonal(board,turn)
      valOne=giveStraight(board,turn,val)
-     valTwo=giveStraight(board,turn,val+6)
+     val=findSecondDiagonal(board,turn,val)
+     valTwo=giveStraight(board,turn,val)
      return max(valOne,valTwo)
  
 main()
+
 
