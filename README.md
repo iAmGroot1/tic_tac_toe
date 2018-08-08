@@ -1,7 +1,7 @@
 # Tic Tac Toe 
 This is my first attempt at making this popular two player game.The AI that I built in this doesnt use any algorithm as such though there is a very popular algorithm generally used to build these kind of two player games called the max min algorithm. Interestingly this very same algorithm is used in bulding the AI for games such as Chess and Go. If you want to read more about the algorithm i will leave a link down below. The AI in this game is entirely based on my very own logic.
 
-Also this is the first project i have tried after learning python for about a week though i have a background in coding in  java. The book where i learnt python from is called **Automate The Boring Stuff With Python** link for which is given down below. This code does have a few bugs though which i would try to solve as soon as possible ...*Hopefully* :laughing:
+Also this is the first project i have tried after learning python for about a week though i have a background in coding in  java. The book where i learnt python from is called **Automate The Boring Stuff With Python** link for which is given down below. 
 
 ## Instruction To Play The Game:
 This game doesn't implement a GUI so dont be freaked :anguished: when you see something like this:
